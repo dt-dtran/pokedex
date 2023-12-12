@@ -1,4 +1,4 @@
-const MAX_POKEMON = 200;
+const MAX_POKEMON = 100;
 const dexWrapper = document.querySelector(".dex-wrapper");
 const searchInput = document.querySelector("#search-input");
 const numberFilter = document.querySelector("#number");
@@ -167,7 +167,7 @@ async function renderPokemon(pokemons) {
     listItem.addEventListener("click", async () => {
       const success = await fetchPokemonData(pokemonID);
       if (success) {
-        window.location.href = `./detail.html?id=${pokemonId}`;
+        window.location.href = `./detail.html?id=${pokemonID}`;
       }
     });
     fragment.appendChild(listItem);
@@ -213,16 +213,15 @@ const handleInput = debounce((ev) => {
 
 searchInput.addEventListener("keyup", handleInput);
 
-async function handleSearch() {
+function handleSearch() {
   let searchTerm = "";
   searchTerm = searchInput.value.toLowerCase();
   let filteredPokemons;
 
   switch (true) {
     // If the empty, return existing array (triggering fxn)
-    case !searchTerm:
+    case searchTerm === "":
       filteredPokemons = allPokemon;
-      return filteredPokemons;
       break;
     // If the first character is not a number, assume it's a name
     case isNaN(searchTerm[0]):
@@ -239,7 +238,7 @@ async function handleSearch() {
       break;
   }
 
-  await renderPokemon(filteredPokemons);
+  renderPokemon(filteredPokemons);
 
   if (filteredPokemons.length === 0) {
     notFoundMessage.style.display = "block";

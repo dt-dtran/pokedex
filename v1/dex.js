@@ -85,7 +85,13 @@ const typeColors = {
 fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON}`)
   .then((response) => response.json())
   .then((data) => {
-    allPokemon = data.results;
+    allPokemon = data.results.map((pokemon) => {
+      const pokemonID = pokemon.url.split("/")[6];
+      return {
+        ...pokemon,
+        id: parseInt(pokemonID, 10),
+      };
+    });
     console.log(allPokemon);
     renderPokemon(allPokemon);
   });
@@ -109,8 +115,10 @@ async function fetchPokemonData(id) {
 async function renderPokemon(pokemons) {
   dexWrapper.innerHTML = "";
 
+  const fragment = document.createDocumentFragment();
+
   for (const pokemon of pokemons) {
-    const pokemonID = pokemon.url.split("/")[6];
+    const pokemonID = pokemon.id;
     const pokemonData = await fetchPokemonData(pokemonID);
     let pokemonType;
 
@@ -125,7 +133,6 @@ async function renderPokemon(pokemons) {
       } else {
         pokemonType = [pokemonData.pokemon.types[0].type.name];
       }
-      //   console.log(pokemonData.pokemon.name, pokemonType);
     }
 
     const cardStyling = getBackgroundColorType(pokemonType[0]);
@@ -156,8 +163,16 @@ async function renderPokemon(pokemons) {
             </div>
         </div>
         `;
-    dexWrapper.appendChild(listItem);
+
+    listItem.addEventListener("click", async () => {
+      const success = await fetchPokemonData(pokemonID);
+      if (success) {
+        window.location.href = `./detail.html?id=${pokemonId}`;
+      }
+    });
+    fragment.appendChild(listItem);
   }
+  dexWrapper.appendChild(fragment);
 }
 
 function getBackgroundColorType(type) {
@@ -180,4 +195,55 @@ function getAccentColorType(type) {
   const accentBgColor = typeColors[type].accent;
 
   return accentBgColor;
+}
+
+const debounce = (callback, wait) => {
+  let timeoutId = null;
+  return (...args) => {
+    window.clearTimeout(timeoutId);
+    timeoutId = window.setTimeout(() => {
+      callback.apply(null, args);
+    }, wait);
+  };
+};
+
+const handleInput = debounce((ev) => {
+  handleSearch();
+}, 250);
+
+searchInput.addEventListener("keyup", handleInput);
+
+async function handleSearch() {
+  let searchTerm = "";
+  searchTerm = searchInput.value.toLowerCase();
+  let filteredPokemons;
+
+  switch (true) {
+    // If the empty, return existing array (triggering fxn)
+    case !searchTerm:
+      filteredPokemons = allPokemon;
+      return filteredPokemons;
+      break;
+    // If the first character is not a number, assume it's a name
+    case isNaN(searchTerm[0]):
+      filteredPokemons = allPokemon.filter((pokemon) => {
+        return pokemon.name.toLowerCase().startsWith(searchTerm);
+      });
+      break;
+    // If the first character is a number, assume it's a number
+    default:
+      filteredPokemons = allPokemon.filter((pokemon) => {
+        const pokemonID = pokemon.id.toString();
+        return pokemonID.startsWith(searchTerm);
+      });
+      break;
+  }
+
+  await renderPokemon(filteredPokemons);
+
+  if (filteredPokemons.length === 0) {
+    notFoundMessage.style.display = "block";
+  } else {
+    notFoundMessage.style.display = "none";
+  }
 }

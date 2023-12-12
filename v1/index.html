@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./dex.js" defer></script>
+  </head>
+  <body>
+    <main class="main">
+      <header class="top-bar">
+        <div class="container">
+          <div class="logo-wrapper">
+            <img src="./assets/pokeball.svg" alt="pokeball logo" />
+            <h1>Pokedex</h1>
+          </div>
+          <div></div>
+        </div>
+      </header>
+      <section class="function-wrapper">
+        <div class="search-wrapper">
+          <div class="search-container">
+            <img
+              src="./assets/search.svg"
+              alt="search icon"
+              class="search-icon"
+            />
+            <input
+              type="text"
+              class="search-input font-3"
+              placeholder="search"
+              id="search-input"
+            />
+          </div>
+        </div>
+        <div class="sort-wrapper">
+          <div class="sort-container">
+            <img src="./assets/sort.svg" alt="sort icon" class="sort-icon" />
+          </div>
+          <div class="filter-wrapper">
+            <p class="font-2">Sort by:</p>
+            <div class="filter-container">
+              <div>
+                <input type="radio" id="name" name="filters" value="name" />
+                <label for="name" class="font-3">Name</label>
+              </div>
+              <div>
+                <input type="radio" id="number" name="filters" value="number" />
+                <label for="number" class="font-3">Number</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="dex">
+        <div class="container">
+          <div class="dex-wrapper"></div>
+        </div>
+        <div id="not-found-message"></div>
+      </section>
+    </main>
+  </body>
+</html>

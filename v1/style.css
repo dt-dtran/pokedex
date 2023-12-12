@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;700&display=swap");
+
+:root {
+  --font-primary-size: 14px;
+  --font-2-size: 24px;
+  --font-3-size: 16px;
+  --font-weight-light: 100;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --headline-font-size: 48px;
+  --headline-line-height: 32px;
+  --primary-line-height: 16px;
+  --caption-line-height: 12px;
+}
+
+body {
+  font-family: Inter;
+}
+
+h2,
+h3,
+h4,
+.font-primary,
+.font-2,
+.font-3 {
+  line-height: var(--primary-line-height);
+}
+
+h1 {
+  font-size: var(--headline-font-size);
+  line-height: var(--headline-line-height);
+}
+
+.font-primary {
+  font-size: var(--font-primary-size);
+}
+
+.font-2 {
+  font-size: var(--font-2-size);
+}
+
+.font-3 {
+  font-size: var(--font-3-size);
+}
+
+.fade {
+  color: #aab3c7;
+}
+
+.font-2,
+.font-3 {
+  line-height: 16px;
+}
+
+/* Card */
+
+.dex-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  height: auto;
+  width: 300px;
+  margin: auto;
+  border-radius: 36px;
+  padding: 20px;
+  margin: 10px;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-font-primary {
+  display: flex;
+  text-transform: capitalize;
+  font-size: x-large;
+  line-height: 5px;
+  color: #f0f2f6;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.card-type {
+  align-self: center;
+}
+
+.type-list {
+  list-style: none;
+  padding-inline-start: 0px;
+}
+
+.type-list li {
+  background-color: #5dd9be;
+  padding: 0.5rem 0.8rem;
+  border-radius: 20px;
+  margin: 0 0.5rem 0.5rem 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #f3f3f3;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.card-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  margin: auto;
+}
+
+.card-img {
+  margin: auto;
+}

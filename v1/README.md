@@ -19,7 +19,7 @@
 ## Backlog
 
 1. View Pokemon detailed information page (information, api)
-2. Fix performance of all Pokemon showing, after deleting input from search box (cache)
+2. Fix performance of all Pokemon showing, after deleting input from search box
 
 ## Bugs
 
@@ -70,21 +70,34 @@
 
 ```
 {
-"abilities": [],
+"abilities": [{
+    "ability": {
+        "name": "overgrow",
+        "url": "https://pokeapi.co/api/v2/ability/65/"
+        },
+        "is_hidden": false,
+        "slot": 1
+        },
+    ],
 "base_experience": 142,
-"forms": [],
-"game_indices": [],
 "height": 10,
-"held_items": [],
 "id": 2,
-"is_default": true,
 "location_area_encounters": "https://pokeapi.co/api/v2/pokemon/2/encounters",
-"moves": [],
+"moves": [{
+    "move": {
+        "name": "leech-seed",
+        "url": "https://pokeapi.co/api/v2/move/73/"
+        },
+    "version_group_details": [
+        {
+        "level_learned_at": 7,
+        "move_learn_method": {
+        "name": "level-up", || "egg" || "machine" || "tutor"
+        "url": "https://pokeapi.co/api/v2/move-learn-method/1/"
+        }},],}
+    ],
 "name": "ivysaur",
 "order": 2,
-"past_abilities": [],
-"past_types": [],
-"species": {},
 "sprites": {},
 "stats": [
     {
@@ -123,7 +136,6 @@
 {
 "base_happiness": 50,
 "capture_rate": 45,
-"color": {},
 "egg_groups": [
     {
         "name": "monster",
@@ -133,7 +145,9 @@
         "name": "plant",
         "url": "https://pokeapi.co/api/v2/egg-group/7/"
     }],
-"evolution_chain": {},
+"evolution_chain": {
+    "url": "https://pokeapi.co/api/v2/evolution-chain/1/"
+    },
 "evolves_from_species": {},
 "flavor_text_entries": [
     {
@@ -179,10 +193,11 @@
     ],
 "form_descriptions": [],
 "forms_switchable": false,
-"gender_rate": 1,
-"genera": [],
-"generation": {},
-"growth_rate": {},
+"gender_rate": 1 (female leads, by 1/8),
+"growth_rate": {
+    "name": "medium-slow",
+    "url": "https://pokeapi.co/api/v2/growth-rate/4/"
+    },
 "habitat": {
     "name": "grassland",
     "url": "https://pokeapi.co/api/v2/pokemon-habitat/3/"
@@ -193,12 +208,12 @@
 "is_baby": false,
 "is_legendary": false,
 "is_mythical": false,
-"name": "ivysaur",
-"names": [],
-"order": 2,
-"pal_park_encounters": [],
-"pokedex_numbers": [],
-"shape": {},
+"name": "bulbasaur",
+"order": 1,
+"shape": {
+    "name": "quadruped",
+    "url": "https://pokeapi.co/api/v2/pokemon-shape/8/"
+    },
 "varieties": []
 }
 

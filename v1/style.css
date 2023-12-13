@@ -2,8 +2,9 @@
 
 :root {
   --font-primary-size: 14px;
-  --font-2-size: 24px;
-  --font-3-size: 16px;
+  --font-2-size: 12px;
+  --font-3-size: 12px;
+  --font-caption-size: 12px;
   --font-weight-light: 100;
   --font-weight-regular: 400;
   --font-weight-bold: 700;
@@ -37,19 +38,23 @@ h1 {
 
 .font-2 {
   font-size: var(--font-2-size);
+  color: #979a9f;
+  font-weight: var(--font-weight-bold);
 }
 
 .font-3 {
   font-size: var(--font-3-size);
+  color: #495058;
+}
+
+.caption-fonts {
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-weight-bold);
+  color: #979a9f;
 }
 
 .fade {
   color: #aab3c7;
-}
-
-.font-2,
-.font-3 {
-  line-height: 16px;
 }
 
 /* Card */
@@ -95,7 +100,6 @@ h1 {
 }
 
 .type-list li {
-  background-color: #5dd9be;
   padding: 0.5rem 0.8rem;
   border-radius: 20px;
   margin: 0 0.5rem 0.5rem 0;
@@ -118,4 +122,58 @@ h1 {
 
 .card-img {
   margin: auto;
+}
+
+.featured-img {
+  height: 100px;
+}
+
+.tab-container {
+  padding: 1.25rem;
+  width: 100%;
+}
+
+.tab > section {
+  display: none;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.tab input {
+  display: none;
+}
+
+label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 25px;
+  font-weight: bold;
+  text-align: center;
+}
+
+label:before {
+  font-weight: normal;
+  margin-right: 10px;
+}
+
+label:hover {
+  color: #888;
+  cursor: pointer;
+  border-bottom: 2px solid #0b0303;
+}
+
+input:checked + label {
+  color: #2e3439;
+  border-bottom: 2px solid #0b0303;
+}
+
+#tab-about:checked ~ #about-content,
+#tab-data:checked ~ #data-content,
+#tab-stats:checked ~ #stats-content,
+#tab-evolve:checked ~ #evolve-content {
+  display: block;
+  transition: all 0.3s linear 0.1s;
+}
+.detail-wrapper {
+  padding-bottom: 2px;
 }

@@ -201,7 +201,8 @@ function renderDataTab(pokemonSpecies) {
 
   document.querySelector("p.font-3.habitat").textContent = `${habitat.name}`;
 
-  const flavorTextWrapper = document.querySelector(".entry-list");
+  const flavorTextWrapper = document.querySelector(".entry-container");
+  //   const flavorTextWrapper = document.querySelector(".entry-list");
 
   const fragment = document.createDocumentFragment();
 
@@ -222,12 +223,14 @@ function renderDataTab(pokemonSpecies) {
 
   uniqueFlavorText.map((entry) => {
     const version = capitalizeFirstLetter(entry.version.name);
-    createAndAppendElement(fragment, "li", {
-      className: `font-4 entries`,
-      textContent: `${version}: ${entry.flavor_text}`,
+    createAndAppendElement(fragment, "div", {
+      className: `entry-item font-4`,
+      textContent: `${version}`,
     });
-
-    flavorTextWrapper.appendChild(fragment);
+    createAndAppendElement(fragment, "div", {
+      className: `entry-item font-4`,
+      textContent: `${entry.flavor_text}`,
+    });
   });
 
   flavorTextWrapper.appendChild(fragment);

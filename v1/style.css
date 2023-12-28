@@ -25,7 +25,8 @@ h4,
 .font-primary,
 .font-2,
 .font-3,
-.caption-fonts {
+.caption-fonts,
+.font-4 {
   line-height: var(--primary-line-height);
 }
 
@@ -69,8 +70,9 @@ h1 {
 }
 
 @media (min-width: 800px) {
-  li.font-3 {
+  div.font-4 {
     font-size: 18px;
+    line-height: 2rem;
   }
 }
 
@@ -378,4 +380,16 @@ input:checked + label {
     height: 20px;
     margin-right: 20px;
   }
+}
+
+.entry-container {
+  display: grid;
+  grid-template-columns: 1fr 11fr; /* Two columns */
+  gap: 10px;
+}
+
+.entry-item {
+  /* padding: 20px; */
+  text-align: left;
+  /* align-self: center; */
 }

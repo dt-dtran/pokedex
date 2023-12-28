@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokemon Detail</title>
     <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="./helper.js"></script>
     <script src="./pokemon-detail.js" defer></script>
   </head>
   <body>
     <main class="detail-main">
-      <header class="header">
+      <div class="detail-top">
+      <div class="header">
         <div class="header-wrapper">
           <div class="header-action">
             <a href="./index.html" class="back-btn-wrap">
@@ -24,20 +26,20 @@
           <div class="header-card">
             <div class="header-title">
               <h1 class="name"></h1>
+              <!-- <div class="header-type"> -->
+                <ul class="header-type-list">
+                </ul>
+              <!-- </div> -->
             </div>
             <div class="header-pokemon-id">
               <p class="card-font-primary"></p>
             </div>
-            <div class="header-type">
-              <ul class="header-type-list">
-              </ul>
-            </div>
           </div>
         </div>
-      </header>
-      <div class="featured-img">
+      </div>
+      <div class="detailed-img">
         <a href="#" class="arrow left-arrow" id="leftArrow">
-          <img src="./assets/back.svg" alt="back" />
+          <img src="./assets/back.svg" alt="back" class="back" />
         </a>
         <div class="detail-img-wrapper">
           <img src="" alt="" />
@@ -51,6 +53,7 @@
         class="detail-bg"
       /> -->
       </div>
+    </div>
       <div class="tab-container">
         <div class="tab">
           <!-- tab1: about -->
@@ -65,9 +68,8 @@
           <!-- tab4: Evolution -->
           <input id="tab-evolve" type="radio" name="tab">
           <label for="tab-evolve" class="tab-label font-2">Evolution</label>
-
           <section class="tab-content" id="about-content">
-              <div class=detail-wrapper">
+              <div class="detail-wrapper">
                 <div class="detail-item">
                   <p class="caption-fonts">Height</p>
                   <p class="font-3 height"></p>
@@ -81,17 +83,17 @@
                   <p class="font-3 shape"></p>
                 </div>
               </div>
-              <div class=detail-wrapper">
-                <div class=detail-title">Breeding</div>
+              <div class="detail-wrapper">
                 <div class="detail-item">
-                  <p class="caption-fonts">Species</p>
-                  <p class="font-3 egg1"></p>
-                  <p class="font-3 egg2"></p>
+                  <p class="caption-fonts">Egg</p>
+                  <p class="font-3 egg"></p>
                 </div>
                 <div class="detail-item">
                   <p class="caption-fonts">Gender</p>
-                  <p class="font-3 genderF"></p>
-                  <p class="font-3 genderM"></p>
+                  <div class="gender">
+                    <p class="font-3 gender1"></p>
+                    <!-- <p class="font-3 gender2"></p> -->
+                  </div>
                 </div>
               </div>
           </section>
@@ -103,7 +105,9 @@
                 </div>
                 <div class="detail-item">
                   <p class="caption-fonts">Entries</p>
-                  <p class="font-3 entries"></p>
+                  <!-- <p class="font-3 entries"></p> -->
+                  <ul class="entry-list">
+                  </ul>
                 </div>
               </div>
           </section>

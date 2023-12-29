@@ -11,151 +11,121 @@
   <body>
     <main class="detail-main">
       <div class="detail-top">
-      <div class="header">
-        <div class="header-wrapper">
-          <div class="header-action">
-            <a href="./index.html" class="back-btn-wrap">
-              <img
-                src="./assets/back.svg"
-                alt="back to home"
-                class="back-btn"
-                id="back-btn"
-              />
-            </a>
-          </div>
-          <div class="header-card">
-            <div class="header-title">
-              <h1 class="name"></h1>
-              <!-- <div class="header-type"> -->
-                <ul class="header-type-list">
-                </ul>
-              <!-- </div> -->
+        <div class="header">
+          <div class="header-wrapper">
+            <div class="header-action">
+              <a href="./index.html" class="back-btn-wrap">
+                <img
+                  src="./assets/back.svg"
+                  alt="back to home"
+                  class="back-btn"
+                  id="back-btn"
+                />
+              </a>
             </div>
-            <div class="header-pokemon-id">
-              <p class="card-font-primary"></p>
+            <div class="header-card">
+              <div class="header-title">
+                <h1 class="name"></h1>
+                <!-- <div class="header-type"> -->
+                <ul class="header-type-list"></ul>
+                <!-- </div> -->
+              </div>
+              <div class="header-pokemon-id">
+                <p class="card-font-primary"></p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="detailed-img">
-        <a href="#" class="arrow left-arrow" id="leftArrow">
-          <img src="./assets/back.svg" alt="back" class="back" />
-        </a>
-        <div class="detail-img-wrapper">
-          <img src="" alt="" />
-        </div>
-        <a href="#" class="arrow right-arrow" id="rightArrow">
-          <img src="./assets/right.svg" alt="forward" />
-        </a>
-        <!-- <img
+        <div class="detailed-img">
+          <a href="#" class="arrow left-arrow" id="leftArrow">
+            <img src="./assets/back.svg" alt="back" class="back" />
+          </a>
+          <div class="detail-img-wrapper">
+            <img src="" alt="" />
+          </div>
+          <a href="#" class="arrow right-arrow" id="rightArrow">
+            <img src="./assets/right.svg" alt="forward" />
+          </a>
+          <!-- <img
         src="./assets/pokeball-shadow.svg"
         alt="pokeball background"
         class="detail-bg"
       /> -->
+        </div>
       </div>
-    </div>
       <div class="tab-container">
         <div class="tab">
           <!-- tab1: about -->
-          <input id="tab-about" type="radio" name="tab" checked>
+          <input id="tab-about" type="radio" name="tab" checked />
           <label for="tab-about" class="tab-label font-2">About</label>
           <!-- tab2: Research -->
-          <input id="tab-data" type="radio" name="tab">
-          <label for="tab-data" class="tab-label font-2">Data</label>
+          <input id="tab-data" type="radio" name="tab" />
+          <label for="tab-data" class="tab-label font-2">Dex</label>
           <!-- tab3: Stats -->
-          <input id="tab-stats" type="radio" name="tab">
+          <input id="tab-stats" type="radio" name="tab" />
           <label for="tab-stats" class="tab-label font-2">Stats</label>
           <!-- tab4: Evolution -->
-          <input id="tab-evolve" type="radio" name="tab">
+          <input id="tab-evolve" type="radio" name="tab" />
           <label for="tab-evolve" class="tab-label font-2">Evolution</label>
           <section class="tab-content" id="about-content">
-              <div class="detail-wrapper">
-                <div class="detail-item">
-                  <p class="caption-fonts">Height</p>
-                  <p class="font-3 height"></p>
-                </div>
-                <div class="detail-item">
-                  <p class="caption-fonts">Weight</p>
-                  <p class="font-3 weight"></p>
-                </div>
-                <div class="detail-item">
-                  <p class="caption-fonts">Shape</p>
-                  <p class="font-3 shape"></p>
+            <div class="detail-wrapper">
+              <div class="detail-item">
+                <p class="caption-fonts">Height</p>
+                <p class="font-3 height"></p>
+              </div>
+              <div class="detail-item">
+                <p class="caption-fonts">Weight</p>
+                <p class="font-3 weight"></p>
+              </div>
+              <div class="detail-item">
+                <p class="caption-fonts">Shape</p>
+                <p class="font-3 shape"></p>
+              </div>
+            </div>
+            <div class="detail-wrapper">
+              <div class="detail-item">
+                <p class="caption-fonts">Egg</p>
+                <p class="font-3 egg"></p>
+              </div>
+              <div class="detail-item">
+                <p class="caption-fonts">Gender</p>
+                <div class="gender">
+                  <p class="font-3 gender1"></p>
+                  <!-- <p class="font-3 gender2"></p> -->
                 </div>
               </div>
-              <div class="detail-wrapper">
-                <div class="detail-item">
-                  <p class="caption-fonts">Egg</p>
-                  <p class="font-3 egg"></p>
-                </div>
-                <div class="detail-item">
-                  <p class="caption-fonts">Gender</p>
-                  <div class="gender">
-                    <p class="font-3 gender1"></p>
-                    <!-- <p class="font-3 gender2"></p> -->
-                  </div>
-                </div>
-              </div>
+            </div>
           </section>
           <section class="tab-content" id="data-content">
-              <div class="detail-wrapper">
-                <div class="detail-item">
-                  <p class="caption-fonts">Habitat</p>
-                  <p class="font-3 habitat"></p>
-                </div>
-                <div class="detail-item">
-                  <p class="caption-fonts">Entries</p>
-                  <!-- <p class="font-3 entries"></p> -->
-                  <ul class="entry-list">
-                  </ul>
-                </div>
-                <div class="detail-item">
-                <div class="entry-container">
-                </div>
+            <div class="detail-wrapper">
+              <div class="detail-item">
+                <p class="caption-fonts">Habitat</p>
+                <p class="font-3 habitat"></p>
               </div>
+              <div class="detail-item">
+                <p class="caption-fonts">Entries</p>
+                <!-- <p class="font-3 entries"></p> -->
+                <ul class="entry-list"></ul>
               </div>
+              <div class="detail-item">
+                <div class="entry-container"></div>
+              </div>
+            </div>
           </section>
           <section class="tab-content" id="stats-content">
-              <div class=detail-wrapper">
-                <div class="stats-wrapper">
-                  <div class="stats-item" data-stat="HP">
-                    <p class="font-2 stats">HP</p>
-                    <p class="font-3"></p>
-                    <progress value="" max="100" class="progress-bar"></progress>
-                  </div>
-                  <div class="stats-item" data-stat="Atk">
-                    <p class="font-2 stats">Attack</p>
-                    <p class="font-3"></p>
-                    <progress value="" max="100" class="progress-bar"></progress>
-                  </div>
-                  <div class="stats-item" data-stat="Def">
-                    <p class="font-2 stats">Defense</p>
-                    <p class="font-3"></p>
-                    <progress value="" max="100" class="progress-bar"></progress>
-                  </div>
-                  <div class="stats-item" data-stat="SpA">
-                    <p class="font-2 stats">Sp. Atk</p>
-                    <p class="font-3"></p>
-                    <progress value="" max="100" class="progress-bar"></progress>
-                  </div>
-                  <div class="stats-item" data-stat="SpD">
-                    <p class="font-2 stats">Sp. Def</p>
-                    <p class="font-3"></p>
-                    <progress value="" max="100" class="progress-bar"></progress>
-                  </div>
-                  <div class="stats-item" data-stat="Spe">
-                    <p class="font-2 stats">Speed</p>
-                    <p class="font-3"></p>
-                    <progress value="" max="100" class="progress-bar"></progress>
-                  </div>
-                </div>
+            <div class="detail-wrapper">
+              <div class="stats-wrapper"></div>
+              <div class="moves-wrapper">
+                <label for="filterVersion">Version:</label>
+                <select id="filterVersion"></select>
+                <div class="moves-container"></div>
               </div>
+            </div>
           </section>
           <section class="tab-content" id="evolve-content">
-              <div class="detail-wrapper">
-                <div class="evolve-wrapper">
-                </div>
-              </div>
+            <div class="detail-wrapper">
+              <div class="evolve-wrapper"></div>
+            </div>
           </section>
         </div>
       </div>

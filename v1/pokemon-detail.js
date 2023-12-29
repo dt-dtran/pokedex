@@ -28,7 +28,7 @@ async function loadPokemon(id) {
 
       const [leftArrow, rightArrow] = ["#leftArrow", "#rightArrow"].map((sel) =>
         document.querySelector(sel)
-      );
+      ); // map or forEach?
       leftArrow.removeEventListener("click", navigatePokemon);
       rightArrow.removeEventListener("click", navigatePokemon);
 
@@ -122,9 +122,8 @@ function renderPokemonDetail(pokemon, pokemonSpecies) {
     document.querySelector("p.font-3.gender1").textContent = "Gender Unknown";
   } else if (gender_rate === 0) {
     document.querySelector("p.font-3.gender1").textContent = "100%";
-
-    document.querySelector("p.font-3.gender1").textContent = "100%";
     const genderWrapper = document.querySelector("div.gender");
+    genderWrapper.innerHTML = "";
     createAndAppendElement(genderWrapper, "img", {
       className: `gender-img`,
       src: "./assets/male-sharp.svg",
@@ -133,6 +132,7 @@ function renderPokemonDetail(pokemon, pokemonSpecies) {
   } else if (gender_rate === 8) {
     document.querySelector("p.font-3.gender1").textContent = "100%";
     const genderWrapper = document.querySelector("div.gender");
+    genderWrapper.innerHTML = "";
     createAndAppendElement(genderWrapper, "img", {
       className: `gender-img`,
       src: "./assets/female-sharp.svg",
@@ -145,6 +145,7 @@ function renderPokemonDetail(pokemon, pokemonSpecies) {
     document.querySelector("p.font-3.gender1").textContent = `${female}`;
 
     const genderWrapper = document.querySelector("div.gender");
+    genderWrapper.innerHTML = "";
 
     const fragment = document.createDocumentFragment();
 
@@ -170,7 +171,6 @@ function renderPokemonDetail(pokemon, pokemonSpecies) {
 }
 
 // function eventlisteners
-
 function tabEvents(pokemon, pokemonSpecies) {
   const [tabAbout, tabData, tabStats, tabEvolve] = [
     "#tab-about",
@@ -188,6 +188,8 @@ function tabEvents(pokemon, pokemonSpecies) {
   });
   tabStats.addEventListener("click", () => {
     console.log("tab stats click");
+    renderStatsTab(pokemon);
+    selectMoveVersion(pokemon);
   });
   tabEvolve.addEventListener("click", () => {
     console.log("tab evolve click");
@@ -195,21 +197,18 @@ function tabEvents(pokemon, pokemonSpecies) {
 }
 
 // tab data event
-
 function renderDataTab(pokemonSpecies) {
   const { habitat, flavor_text_entries } = pokemonSpecies;
 
   document.querySelector("p.font-3.habitat").textContent = `${habitat.name}`;
 
   const flavorTextWrapper = document.querySelector(".entry-container");
-  //   const flavorTextWrapper = document.querySelector(".entry-list");
-
+  flavorTextWrapper.innerHTML = "";
   const fragment = document.createDocumentFragment();
 
   const filteredFlavorTexts = flavor_text_entries.filter(
     (obj) => obj.language.name === "en"
   );
-  console.log("filered", filteredFlavorTexts);
 
   let uniqueChecker = [];
   let uniqueFlavorText = [];
@@ -219,9 +218,8 @@ function renderDataTab(pokemonSpecies) {
       uniqueFlavorText.push(entry);
     }
   });
-  console.log("unique", uniqueFlavorText);
 
-  uniqueFlavorText.map((entry) => {
+  uniqueFlavorText.forEach((entry) => {
     const version = capitalizeFirstLetter(entry.version.name);
     createAndAppendElement(fragment, "div", {
       className: `entry-item font-4`,
@@ -234,6 +232,300 @@ function renderDataTab(pokemonSpecies) {
   });
 
   flavorTextWrapper.appendChild(fragment);
+}
+
+function renderStatsTab(pokemon) {
+  const { stats, moves } = pokemon;
+  const statsMapping = {
+    hp: "HP",
+    attack: "Attack",
+    defense: "Defense",
+    "special-attack": "Sp. Atk",
+    "special-defense": "Sp. Ded",
+    speed: "Speed",
+  };
+
+  const statsWrapper = document.querySelector(".stats-wrapper");
+  statsWrapper.innerHTML = "";
+  const fragment = document.createDocumentFragment();
+
+  stats.forEach(({ stat, base_stat }) => {
+    const statDiv = createAndAppendElement(fragment, "div", {
+      className: "stats-item",
+    });
+
+    createAndAppendElement(statDiv, "p", {
+      className: "font-3 stats",
+      textContent: statsMapping[stat.name],
+    });
+
+    createAndAppendElement(statDiv, "p", {
+      className: "font-3",
+      textContent: String(base_stat).padStart(3, "0"),
+    });
+
+    createAndAppendElement(statDiv, "progress", {
+      className: "progress-bar",
+      value: base_stat,
+      max: 100,
+    });
+  });
+  statsWrapper.appendChild(fragment);
+}
+
+// event listener for move version selection
+let moveVersion = null;
+let availableVersions = [];
+let moves = [];
+let filteredMovesData = [];
+
+filterVersion.addEventListener("change", function () {
+  moveVersion = this.value;
+  const versionIndexSelected = filterVersion.selectedIndex;
+  selectMoveVersion(moves);
+});
+
+// Moveset by Version
+function renderMoves(filteredMovesData) {
+  console.log(`renderMoves START:`);
+  const moveWrapper = document.querySelector(".moves-container");
+
+  moveWrapper.innerHTML = "";
+  const fragment = document.createDocumentFragment();
+
+  const moveTable = createAndAppendElement(fragment, "table", {
+    className: "move-table font-3",
+  });
+
+  const tableHeader = createAndAppendElement(moveTable, "thead", {
+    className: "table-header caption-fonts",
+  });
+
+  const tableHeaderRow = createAndAppendElement(tableHeader, "tr", {
+    className: "table-header caption-3",
+  });
+
+  createAndAppendElement(tableHeaderRow, "th", {
+    className: "table-header caption-fonts",
+    textContent: "Moves",
+  });
+
+  createAndAppendElement(tableHeaderRow, "th", {
+    className: "table-header caption-fonts",
+    textContent: "Learned At",
+  });
+
+  createAndAppendElement(tableHeaderRow, "th", {
+    className: "table-header caption-fonts",
+    textContent: "Learn Method",
+  });
+
+  const tableBody = createAndAppendElement(moveTable, "tbody", {
+    className: "table-body font-3",
+  });
+
+  const otherTable = createAndAppendElement(fragment, "table", {
+    className: "move-table font-3",
+  });
+
+  const otherHeader = createAndAppendElement(otherTable, "thead", {
+    className: "table-header caption-fonts",
+  });
+
+  const otherHeaderRow = createAndAppendElement(otherHeader, "tr", {
+    className: "table-header caption-3",
+  });
+
+  createAndAppendElement(otherHeaderRow, "th", {
+    className: "table-header caption-fonts",
+    textContent: "Moves",
+  });
+
+  createAndAppendElement(otherHeaderRow, "th", {
+    className: "table-header caption-fonts",
+    textContent: "Learned At",
+  });
+
+  createAndAppendElement(otherHeaderRow, "th", {
+    className: "table-header caption-fonts",
+    textContent: "Learn Method",
+  });
+
+  const otherBody = createAndAppendElement(otherTable, "tbody", {
+    className: "table-body font-3",
+  });
+
+  const splitData = filteredMovesData.reduce(
+    (result, { move, version_group_details }) => {
+      const levelUp = version_group_details.find((method) => {
+        return method.move_learn_method.name === "level-up";
+      });
+
+      if (levelUp) {
+        result.level.push({ move, levelUp });
+      } else {
+        const versionOther = version_group_details[0];
+        result.non.push({ move, versionOther });
+      }
+
+      return result;
+    },
+    { level: [], non: [] }
+  );
+
+  console.log("level:", splitData.level);
+  console.log("Non:", splitData.non);
+
+  splitData.level.sort(
+    (a, b) => a.levelUp.level_learned_at - b.levelUp.level_learned_at
+  );
+
+  console.log("levelSorted:", splitData.level);
+
+  splitData.level.forEach((line) => {
+    const tableRow = createAndAppendElement(tableBody, "tr", {
+      className: "table-row",
+    });
+
+    const moveName = createAndAppendElement(tableRow, "td", {
+      className: "table-data level",
+      textContent: `${line.move.name}`,
+    });
+
+    const levelLearnedData = createAndAppendElement(tableRow, "td", {
+      className: "table-data level",
+      textContent: `${line.levelUp.level_learned_at}`,
+    });
+
+    const learnMethodData = createAndAppendElement(tableRow, "td", {
+      className: "table-date method",
+      textContent: `${line.levelUp.move_learn_method.name}`,
+    });
+  });
+
+  splitData.non.forEach((line) => {
+    const otherRow = createAndAppendElement(otherBody, "tr", {
+      className: "table-row",
+    });
+
+    const moveName = createAndAppendElement(otherRow, "td", {
+      className: "table-data level",
+      textContent: `${line.move.name}`,
+    });
+
+    const levelLearnedData = createAndAppendElement(otherRow, "td", {
+      className: "table-data level",
+      textContent: `${line.versionOther.level_learned_at}`,
+    });
+
+    const learnMethodData = createAndAppendElement(otherRow, "td", {
+      className: "table-date method",
+      textContent: `${line.versionOther.move_learn_method.name}`,
+    });
+  });
+
+  moveWrapper.appendChild(fragment);
+  console.log("renderMoves END");
+}
+
+// version selection
+function selectMoveVersion(pokemon) {
+  if (moveVersion) {
+    console.log("EVENT selectMoveVersion START");
+    // console.log("moveVer", moveVersion);
+
+    filteredMovesData = filterMoves(moveVersion, moves);
+    // console.log("onClick filter", filteredMovesData);
+    if (filteredMovesData) {
+      renderMoves(filteredMovesData);
+    }
+    console.log("EVENT selectMoveVersion END");
+  } else {
+    console.log("DEFAULT selectMoveVersion START");
+    moves = pokemon.moves;
+    //   console.log("moves - select", moves);
+    availableVersions = getUniqueVersions(moves);
+    displayUniqueVersions(availableVersions);
+    const versionWrapper = document.getElementById("filterVersion");
+
+    versionWrapper.selectedIndex = versionWrapper.options.length - 1;
+    const defaultLatestVersion =
+      versionWrapper.options[versionWrapper.selectedIndex].value;
+
+    filteredMovesData = filterMoves(defaultLatestVersion, moves);
+    // console.log(`defLatestVersion: ${defaultLatestVersion},`);
+    // console.log("default filtered", filteredMovesData);
+    if (filteredMovesData) {
+      renderMoves(filteredMovesData);
+    }
+    console.log("DEFAULT selectMoveVersion END");
+  }
+}
+
+// filter by version selection
+function filterMoves(version, moves) {
+  console.log("filterMoves START");
+  const movesDataByVersion = moves
+    .map((move) => {
+      const filteredVersionGroup = move.version_group_details.filter(
+        (detail) => {
+          return detail.version_group.name === version;
+        }
+      );
+
+      if (filteredVersionGroup.length > 0) {
+        const versionMove = {
+          move: {
+            ...move.move,
+          },
+          version_group_details: filteredVersionGroup,
+        };
+        return versionMove;
+      } else {
+        return null;
+      }
+    })
+    .filter((move) => move !== null);
+  console.log("filtered END: move[0]", movesDataByVersion[0]);
+  return movesDataByVersion;
+}
+
+// display version options
+function displayUniqueVersions(uniqueVersions) {
+  console.log("displayUniqueVersions START");
+  const versionWrapper = document.getElementById("filterVersion");
+  versionWrapper.innerHTML = "";
+  const fragment = document.createDocumentFragment();
+
+  uniqueVersions.forEach((version) => {
+    createAndAppendElement(fragment, "option", {
+      className: `version-option font-4`,
+      value: version,
+      textContent: `${version}`,
+    });
+  });
+  versionWrapper.appendChild(fragment);
+  console.log("displayUniqueVersions END");
+}
+
+// get unique version
+function getUniqueVersions(moves) {
+  console.log("getUniqueVersions START");
+  const uniqueVersions = new Set();
+
+  moves.forEach((move) => {
+    move.version_group_details.map((details) => {
+      const versionName = details.version_group.name;
+      uniqueVersions.add(versionName);
+    });
+  });
+
+  const filteredVersions = versionGroupIndex
+    .filter((group) => uniqueVersions.has(group.name))
+    .map((group) => group.name);
+
+  console.log("getUniqueVersions END");
+  return filteredVersions;
 }
 
 // styling background for header

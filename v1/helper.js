@@ -131,3 +131,90 @@ const typeColors = {
     accent: "#272727",
   },
 };
+
+const versionGroupIndex = [
+  {
+    name: "red-blue",
+    index: 0,
+  },
+  {
+    name: "yellow",
+    index: 1,
+  },
+  {
+    name: "gold-silver",
+    index: 2,
+  },
+  {
+    name: "crystal",
+    index: 3,
+  },
+  {
+    name: "ruby-sapphire",
+    index: 4,
+  },
+  {
+    name: "emerald",
+    index: 5,
+  },
+  {
+    name: "firered-leafgreen",
+    index: 6,
+  },
+  {
+    name: "diamond-pearl",
+    index: 7,
+  },
+  {
+    name: "platinum",
+    index: 8,
+  },
+  {
+    name: "heartgold-soulsilver",
+    index: 9,
+  },
+  {
+    name: "black-white",
+    index: 10,
+  },
+  {
+    name: "colosseum",
+    index: 11,
+  },
+  {
+    name: "xd",
+    index: 12,
+  },
+  {
+    name: "black-2-white-2",
+    index: 13,
+  },
+  {
+    name: "x-y",
+    index: 14,
+  },
+  {
+    name: "omega-ruby-alpha-sapphire",
+    index: 15,
+  },
+  {
+    name: "sun-moon",
+    index: 16,
+  },
+  {
+    name: "ultra-sun-ultra-moon",
+    index: 17,
+  },
+  {
+    name: "lets-go-pikachu-lets-go-eevee",
+    index: 18,
+  },
+  {
+    name: "sword-shield",
+    index: 19,
+  },
+  {
+    name: "scarlet-violet",
+    index: 20,
+  },
+];

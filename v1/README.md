@@ -92,9 +92,14 @@
         {
         "level_learned_at": 7,
         "move_learn_method": {
-        "name": "level-up", || "egg" || "machine" || "tutor"
-        "url": "https://pokeapi.co/api/v2/move-learn-method/1/"
-        }},],}
+            "name": "level-up", || "egg" || "machine" || "tutor"
+            "url": "https://pokeapi.co/api/v2/move-learn-method/1/"
+        },
+        "version_group": {
+            "name": "red-blue" || "yellow || "emerald" || "diamond-pearl" || "platinum" || "heartgold-soulsilver" || "black-white" || "black-2-white-2" || "omega-ruby-alpha-sapphire" || "sun-moon" || "ultra-sun-ultra-moon" || "sword-shield" || "brilliant-diamond-and-shining-pearl"
+            "url": "https://pokeapi.co/api/v2/version-group/1/"
+            }
+        },],}
     ],
 "name": "ivysaur",
 "order": 2,
@@ -104,7 +109,7 @@
         "base_stat": 60,
         "effort": 0,
         "stat": {
-        "name": "hp",
+        "name": "hp" || "attack" || "defense" || "special-attack" || "special-defense" || "speed",
         "url": "https://pokeapi.co/api/v2/stat/1/"
         }
     },

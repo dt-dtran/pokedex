@@ -62,8 +62,6 @@ async function navigatePokemon(id) {
 
 // Pokemon Data
 function renderPokemonDetail(pokemon, pokemonSpecies) {
-  console.log("pokemon", pokemon);
-  console.log("PS", pokemonSpecies);
   const { name, id, types, weight, height } = pokemon;
   const { egg_groups, gender_rate, shape, is_legendary, is_mythical } =
     pokemonSpecies;
@@ -373,14 +371,9 @@ function renderMoves(filteredMovesData) {
     { level: [], non: [] }
   );
 
-  console.log("level:", splitData.level);
-  console.log("Non:", splitData.non);
-
   splitData.level.sort(
     (a, b) => a.levelUp.level_learned_at - b.levelUp.level_learned_at
   );
-
-  console.log("levelSorted:", splitData.level);
 
   splitData.level.forEach((line) => {
     const tableRow = createAndAppendElement(tableBody, "tr", {
@@ -432,10 +425,8 @@ function renderMoves(filteredMovesData) {
 function selectMoveVersion(pokemon) {
   if (moveVersion) {
     console.log("EVENT selectMoveVersion START");
-    // console.log("moveVer", moveVersion);
 
     filteredMovesData = filterMoves(moveVersion, moves);
-    // console.log("onClick filter", filteredMovesData);
     if (filteredMovesData) {
       renderMoves(filteredMovesData);
     }
@@ -443,7 +434,6 @@ function selectMoveVersion(pokemon) {
   } else {
     console.log("DEFAULT selectMoveVersion START");
     moves = pokemon.moves;
-    //   console.log("moves - select", moves);
     availableVersions = getUniqueVersions(moves);
     displayUniqueVersions(availableVersions);
     const versionWrapper = document.getElementById("filterVersion");
@@ -453,8 +443,7 @@ function selectMoveVersion(pokemon) {
       versionWrapper.options[versionWrapper.selectedIndex].value;
 
     filteredMovesData = filterMoves(defaultLatestVersion, moves);
-    // console.log(`defLatestVersion: ${defaultLatestVersion},`);
-    // console.log("default filtered", filteredMovesData);
+
     if (filteredMovesData) {
       renderMoves(filteredMovesData);
     }

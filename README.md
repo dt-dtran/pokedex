@@ -27,13 +27,13 @@ Technology and New Features:
 
 * If time permits: data pipeline, Redis
 
-## v3 - Pokemon Word Game with Next
+## v3 - Pokemon Word Game
 
 This version will leverage the transformed data in v3 and include auth and game features.
 
 Technology and New Features:
 
-- Frontend/Backend: Next
+- Frontend/Backend:
   - auth for user accounts
   - save progress and achievements
   - the game
